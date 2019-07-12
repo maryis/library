@@ -7,7 +7,7 @@ var helmet = require('helmet');
 
 module.exports = (app) => {
     // view engine setup
-    app.set('views', path.join(__dirname, 'views'));
+    app.set('views', path.join(__dirname, '../views'));
     app.set('view engine', 'pug');
 
     app.use(logger('dev'));
@@ -18,4 +18,5 @@ module.exports = (app) => {
 
     app.use(cors());
     app.use(helmet());
+    require('../bootstrap/db');
 }

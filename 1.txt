@@ -1,0 +1,32 @@
+
+    user (login , add, change, disable)
+    book   (add, edit ,remove)
+    search (all,book,user,author,services)
+    rent  (add, remove, change)
+    buy (add, cancel)
+------------------
+//book
+   title
+   ISBN
+   [author
+        name
+        nationality
+   total-quantity
+   rented-quantity
+   [review
+        desc
+        user
+
+//user
+    name
+    family
+    mem-date
+    contact
+        phone
+        email
+
+//service
+
+    type
+    user
+    [book]

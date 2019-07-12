@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const guard = require('../services/guard');
+const adminGuard = require('../services/adminguard');
 const User = require('../models/User.model');
 
-// LIST
+// list - no Auth
 router.get('/', (req, res) => {
     User
         .find({})
@@ -16,38 +17,71 @@ router.get('/', (req, res) => {
             });
         })
         .catch(err => {
-            throw new Error(err);
+            res.status(500).send({
+                status:false,
+                msg:'error listing users'
+            })
         })
 });
 
 
+// get one - no Auth
+router.get('/:id', (req, res) => {
+    const {id} = req.params;
+    User
+        .findById(id)
+        .then(user => {
+            if (user) {
 
-// REGISTER
-router.post('/', (req, res) => {
-    const { username, password, email } = req.body;
+                res.json({
+                    status: true,
+                    data: user,
+                    msg: 'user fetched'
+                });
+            } else {
+                res.status(400).send({
+                    status: false,
+                    msg: "user not found"
+                })
+            }
 
-    if (username && password && email){
+        })
+        .catch(err => {
+            res.status(500).send({
+                status: false,
+                msg: "problem in fetching user"
+            })
+        })
+});
+
+
+// add user - admin
+router.post('/', adminGuard, (req, res) => {
+
+    const {username, password} = req.body;
+
+    if (username && password) {
         User
-            .findOne({ email })
+            .findOne({username})
             .then(user => {
-                if (!user){
+                if (!user) {
                     let newUser = new User(req.body);
-                        newUser
-                            .save()
-                            .then(user => {
-                                res.json({
-                                    status: true,
-                                    data: user,
-                                    msg: 'Register user successful'
-                                });
-                            })
-                            .catch(err => {
-                                res.status(500).send({
-                                    status: false,
-                                    msg: 'Error registering User'
-                                });
-                                throw new Error(err);
-                            })
+                    newUser
+                        .save()
+                        .then(user => {
+                            res.json({
+                                status: true,
+                                data: user,
+                                msg: 'Register user successful'
+                            });
+                        })
+                        .catch(err => {
+                            res.status(500).send({
+                                status: false,
+                                msg: 'Error registering User'
+                            });
+                            throw new Error(err);
+                        })
                 } else {
                     res.status(409).send({
                         status: false,
@@ -63,88 +97,55 @@ router.post('/', (req, res) => {
     }
 });
 
+//change user   - admin
+router.put('/:id', adminGuard, (req, res) => {
 
+    user = req.body;
+    const {id} = req.params;
 
-router.post('/login', (req, res) => {
-    
-    const { email, password } = req.body;
-
-
-    if (email && password){
-
-        User
-            .findOne({email})
-            .then(user => {
-                if (user){
-                    
-                    // Compare Password
-                    user.comparePassword(password, function(err, isMatch){
-                        if (err) throw new Error(err);
-
-                        if (!err && isMatch){
-                            
-                            // Token
-
-                            let claims = {
-                                expiresIn : '6h',
-                                issuer: 'hesanam',
-                                audience: 'bacheha'
-                            };
-
-                            let payload = {
-                                username : user.username,
-                                email: user.email
-                            }
-
-                            jwt.sign(payload, 'TEST', claims, function(err, token){
-                                if (!err){
-                                    res.json({
-                                        status: true,
-                                        msg: 'Login successful',
-                                        data: token
-                                    });
-                                }
-                            });
-
-                        } else {
-                            res.json({
-                                status: false,
-                                msg: 'User/Password incorrect'
-                            });
-                        }
-
-                    });
-                    
-                } else {
-                    res.status(404).send({
-                        status: false,
-                        msg: 'user not found'
-                    });
-                }
+    if (user.username && user.password) {
+        User.findByIdAndUpdate(id, user, {new: true})
+            .then(u => {
+                res.json({
+                    status: true,
+                    data: user,
+                    msg: 'Change user successful'
+                });
             })
-
+            .catch(err => {
+                res.status(500).send({
+                    status: flase,
+                    msg: 'Change user problem'
+                });
+            })
     } else {
         res.status(500).send({
             status: false,
             msg: 'incorrect data'
         });
     }
-
 });
 
+//delete  - admin
+router.delete('/:id', adminGuard, (req, res) => {
 
+    const {id} = req.params;
 
+    User.findByIdAndDelete(id)
+        .then(u => {
+                res.json({
+                    status: true,
+                    data: u,
+                    msg: 'User deleted'
+                });
+        })
+        .catch(err => {
+            res.status(500).send({
+                status: false,
+                msg: 'delete user problem'
+            });
+        });
 
-// AUTH
-// LIST
-router.put('/:id', guard, (req, res) => {
-    res.send(req.user);
 });
-
-// LIST
-router.delete('/:id', guard, (req, res) => {
-    res.send('DELETE');
-});
-
 
 module.exports = router;
