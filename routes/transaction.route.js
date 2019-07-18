@@ -4,25 +4,8 @@ const jwt = require('jsonwebtoken');
 const guard = require('../services/guard');
 const User = require('../models/User.model');
 
-// LIST
-router.get('/', (req, res) => {
-    User
-        .find({})
-        .then(users => {
-            res.json({
-                status: true,
-                data: users,
-                msg: 'Listing users success'
-            });
-        })
-        .catch(err => {
-            throw new Error(err);
-        })
-});
 
-
-
-// REGISTER
+// buy
 router.post('/', (req, res) => {
     const { username, password, email } = req.body;
 
