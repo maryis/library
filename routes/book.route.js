@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
                     msg: 'book fetched'
                 });
             } else {
-                res.status(400).send({
+                res.status(404).send({
                     status: false,
                     msg: "book not found"
                 })
@@ -120,7 +120,7 @@ router.post('/', adminGuard, (req, res) => {
                 }
             })
     } else {
-        res.status(500).send({
+        res.status(400).send({
             status: false,
             msg: 'incorrect data'
         });
@@ -164,15 +164,15 @@ router.put('/addcomment/:id', guard, (req, res) => {
                 });
             })
     } else {
-        res.status(500).send({
+        res.status(400).send({
             status: false,
             msg: 'incorrect data'
         });
     }
 });
 
-//change book(to add comment)   - Admin
-router.put('/addauthor/:id', adminGuard(), (req, res) => {
+//change book(to add author)   - Admin
+router.put('/addauthor/:id', adminGuard, (req, res) => {
 
     book = req.body;
     const {id} = req.params;
@@ -208,7 +208,7 @@ router.put('/addauthor/:id', adminGuard(), (req, res) => {
                 });
             })
     } else {
-        res.status(500).send({
+        res.status(400).send({
             status: false,
             msg: 'incorrect data'
         });
@@ -237,7 +237,7 @@ router.put('/:id', adminGuard, (req, res) => {
                 });
             })
     } else {
-        res.status(500).send({
+        res.status(400).send({
             status: false,
             msg: 'incorrect data'
         });

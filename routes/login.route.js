@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const guard = require('../services/guard');
-const adminguard = require('../services/adminguard');
 const User = require('../models/User.model');
 
 

@@ -25,7 +25,7 @@ module.exports = ( req, res, next) => {
 
                 }
                 else
-                    return res.status(403).send({
+                    return res.status(401).send({
                         status: false,
                         msg: 'Not Valid User'
                     });

@@ -2,132 +2,41 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const guard = require('../services/guard');
-const User = require('../models/User.model');
+const Transaction = require('../models/Transaction.model');
 
 
-// buy
-router.post('/', (req, res) => {
-    const { username, password, email } = req.body;
+// buy  -  auth
+router.post('/',guard, (req, res) => {
 
-    if (username && password && email){
-        User
-            .findOne({ email })
-            .then(user => {
-                if (!user){
-                    let newUser = new User(req.body);
-                        newUser
-                            .save()
-                            .then(user => {
-                                res.json({
-                                    status: true,
-                                    data: user,
-                                    msg: 'Register user successful'
-                                });
-                            })
-                            .catch(err => {
-                                res.status(500).send({
-                                    status: false,
-                                    msg: 'Error registering User'
-                                });
-                                throw new Error(err);
-                            })
-                } else {
-                    res.status(409).send({
-                        status: false,
-                        msg: 'user already exist'
-                    });
-                }
+    trans = req.body;
+    const {id} = req.params;
+
+    if (trans.trans_time && trans.customer&&trans.books) {
+        let newTrans = new Transaction(req.body);
+        console.log(newTrans);
+        newTrans
+            .save()
+            .then(trans => {
+                res.json({
+                    status: true,
+                    data: trans,
+                    msg: 'Register Transaction successful'
+                });
+            })
+            .catch(err => {
+                res.status(500).send({
+                    status: false,
+                    msg: 'Error registering Transaction'
+                });
+                throw new Error(err);
             })
     } else {
-        res.status(500).send({
-            status: false,
-            msg: 'incorrect data'
-        });
-    }
-});
-
-
-
-router.post('/login', (req, res) => {
-    
-    const { email, password } = req.body;
-
-
-    if (email && password){
-
-        User
-            .findOne({email})
-            .then(user => {
-                if (user){
-                    
-                    // Compare Password
-                    user.comparePassword(password, function(err, isMatch){
-                        if (err) throw new Error(err);
-
-                        if (!err && isMatch){
-                            
-                            // Token
-
-                            let claims = {
-                                expiresIn : '6h',
-                                issuer: 'hesanam',
-                                audience: 'bacheha'
-                            };
-
-                            let payload = {
-                                username : user.username,
-                                email: user.email
-                            }
-
-                            jwt.sign(payload, 'TEST', claims, function(err, token){
-                                if (!err){
-                                    res.json({
-                                        status: true,
-                                        msg: 'Login successful',
-                                        data: token
-                                    });
-                                }
-                            });
-
-                        } else {
-                            res.json({
-                                status: false,
-                                msg: 'User/Password incorrect'
-                            });
-                        }
-
-                    });
-                    
-                } else {
-                    res.status(404).send({
-                        status: false,
-                        msg: 'user not found'
-                    });
-                }
-            })
-
-    } else {
-        res.status(500).send({
+        res.status(400).send({
             status: false,
             msg: 'incorrect data'
         });
     }
 
 });
-
-
-
-
-// AUTH
-// LIST
-router.put('/:id', guard, (req, res) => {
-    res.send(req.user);
-});
-
-// LIST
-router.delete('/:id', guard, (req, res) => {
-    res.send('DELETE');
-});
-
 
 module.exports = router;
