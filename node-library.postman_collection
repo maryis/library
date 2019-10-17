@@ -1,0 +1,449 @@
+{
+	"info": {
+		"_postman_id": "554bf7ff-9900-4abc-a57e-02cfcb424499",
+		"name": "node-library-api-doc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3001/user",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MTE2NDA5NSwiZXhwIjoxNTcxMTg1Njk1LCJhdWQiOiJ1c2VycyIsImlzcyI6ImxpYi1hcHAifQ.Wq6HmwIDHdy-sv1recaD4i1VzYDOVixUPupSlfxxx4g",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n {\r\n   \t\"username\" : \"aliiii\",\r\n    \"password\" : \"123456\",\r\n    \"contact\" : { \"address\":\"karimkhan\",\r\n                \"email\": \"m@c.com\"},\r\n    \"isAdmin\": \"true\"}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MTE2NDA5NSwiZXhwIjoxNTcxMTg1Njk1LCJhdWQiOiJ1c2VycyIsImlzcyI6ImxpYi1hcHAifQ.Wq6HmwIDHdy-sv1recaD4i1VzYDOVixUPupSlfxxx4g",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n {\r\n   \t\"username\" : \"ali\",\r\n    \"password\" : \"123456\"}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/user/ali",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MTMwNDMyOCwiZXhwIjoxNTcxMzI1OTI4LCJhdWQiOiJ1c2VycyIsImlzcyI6ImxpYi1hcHAifQ.1MlVIWMY3HHqljtLGEDpwph8L3Z1l026bbP0gnzsjU8",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n {\r\n   \t\"username\" : \"ali\",\r\n    \"password\" : \"123456\",\r\n    \"contact\" : { \"address\":\"ali\",\r\n                \"email\": \"m@c.com\"},\r\n    \"isAdmin\": \"true\"}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/user/ali",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"user",
+						"ali"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/user/ali",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MTMwNDMyOCwiZXhwIjoxNTcxMzI1OTI4LCJhdWQiOiJ1c2VycyIsImlzcyI6ImxpYi1hcHAifQ.1MlVIWMY3HHqljtLGEDpwph8L3Z1l026bbP0gnzsjU8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n {\r\n    \"password\" : \"123456\",\r\n    \"contact\" : { \"address\":\"ali\",\r\n                \"email\": \"a@c.com\"},\r\n    \"isAdmin\": \"true\"}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/user/ali",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"user",
+						"ali"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/user/ali",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MTMwNDMyOCwiZXhwIjoxNTcxMzI1OTI4LCJhdWQiOiJ1c2VycyIsImlzcyI6ImxpYi1hcHAifQ.1MlVIWMY3HHqljtLGEDpwph8L3Z1l026bbP0gnzsjU8",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/book/HILIFE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"book",
+						"HILIFE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/book/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MTMwNDMyOCwiZXhwIjoxNTcxMzI1OTI4LCJhdWQiOiJ1c2VycyIsImlzcyI6ImxpYi1hcHAifQ.1MlVIWMY3HHqljtLGEDpwph8L3Z1l026bbP0gnzsjU8",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/book/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"book",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/user/ali",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MTMwNDMyOCwiZXhwIjoxNTcxMzI1OTI4LCJhdWQiOiJ1c2VycyIsImlzcyI6ImxpYi1hcHAifQ.1MlVIWMY3HHqljtLGEDpwph8L3Z1l026bbP0gnzsjU8",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/book/HILIFE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"book",
+						"HILIFE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/book/HILIFE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MTMwNDMyOCwiZXhwIjoxNTcxMzI1OTI4LCJhdWQiOiJ1c2VycyIsImlzcyI6ImxpYi1hcHAifQ.1MlVIWMY3HHqljtLGEDpwph8L3Z1l026bbP0gnzsjU8",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/book/getrate/HILIFE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"book",
+						"getrate",
+						"HILIFE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/book/HILIFE",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MTMwNDMyOCwiZXhwIjoxNTcxMzI1OTI4LCJhdWQiOiJ1c2VycyIsImlzcyI6ImxpYi1hcHAifQ.1MlVIWMY3HHqljtLGEDpwph8L3Z1l026bbP0gnzsjU8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \"comments\" : [{ \"rate\":7},{ \"rate\":2}]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/book/addcomment/HILIFE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"book",
+						"addcomment",
+						"HILIFE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/book/getrate/HILIFE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MTMwNDMyOCwiZXhwIjoxNTcxMzI1OTI4LCJhdWQiOiJ1c2VycyIsImlzcyI6ImxpYi1hcHAifQ.1MlVIWMY3HHqljtLGEDpwph8L3Z1l026bbP0gnzsjU8",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3001/book/getrate/HILIFE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"book",
+						"getrate",
+						"HILIFE"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/book/addcomment/HILIFE",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsaSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTU3MTMwNDMyOCwiZXhwIjoxNTcxMzI1OTI4LCJhdWQiOiJ1c2VycyIsImlzcyI6ImxpYi1hcHAifQ.1MlVIWMY3HHqljtLGEDpwph8L3Z1l026bbP0gnzsjU8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{    \"comments\" : [{ \"rate\":7},{ \"rate\":2}]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/book/addcomment/HILIFE",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"book",
+						"addcomment",
+						"HILIFE"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

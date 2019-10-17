@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
     const {id} = req.params;
     Book
-        .findById(id)
+        .findOne({title:id})
         .then(book => {
             if (book) {
 
@@ -48,7 +48,7 @@ router.get('/:id', (req, res) => {
         .catch(err => {
             res.status(500).send({
                 status: false,
-                msg: "problem in fetching book"
+                msg: "problem in fetching book : "+err.toString()
             })
         })
 });
@@ -58,13 +58,14 @@ router.get('/getrate/:id',  (req, res) => {
 
     const {id} = req.params;
 
-    Book.findById(id)
+    Book.findOne({title:id})
         .then(b => {
             let rate=0;
             let count=0;
             b.comments.forEach(c=>{
                 count++;
-                rate+=c.rate;
+                if(c && c.rate)
+                     rate+=c.rate;
             });
 
             if(count>0){
@@ -79,7 +80,7 @@ router.get('/getrate/:id',  (req, res) => {
         .catch(err => {
             res.status(500).send({
                 status: flase,
-                msg: 'get book info problem'
+                msg: 'get book info problem: '+err.toString()
             });
         })
 
@@ -134,7 +135,7 @@ router.put('/addcomment/:id', guard, (req, res) => {
     const {id} = req.params;
 
     if (!(book.ISBN || book.title||book.rented_quantity||book.total_quantity||book.authors)&& (book.comments)) {
-        Book.findById(id)
+        Book.findOne({title:id})
             .then(b => {
 
                 b.comments.forEach(c=>{
@@ -151,7 +152,7 @@ router.put('/addcomment/:id', guard, (req, res) => {
                     else {
                         res.status(500).send({
                             status: false,
-                            msg: 'Change book problem'});
+                            msg: 'Change book problem: '+err.toString()  });
                     }
 
                 });

@@ -12,9 +12,7 @@ module.exports = ( req, res, next) => {
 
         jwt.verify(token, 'myKey', function (err, decoded) { //decoded is payload
             if (!err) {
-
-
-                    req.user = decoded;
+                   req.user = decoded;
                     next();
 
             }
@@ -25,6 +23,5 @@ module.exports = ( req, res, next) => {
                 });
 
         });
-
     }
 }

@@ -11,13 +11,13 @@ router.post('/', (req, res) => {//check pass
 
 
     if (username && password){
-
         User
             .findOne({username})
             .then(user => {
                 if (user){
                     
                     // Compare Password
+                    console.log(user.password)
                     user.comparePassword(password, function(err, isMatch){
                         if (err) throw new Error(err);
 

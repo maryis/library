@@ -24,15 +24,13 @@ router.get('/', (req, res) => {
         })
 });
 
-
 // get one - no Auth
 router.get('/:id', (req, res) => {
     const {id} = req.params;
     User
-        .findById(id)
+        .findOne({username:id})
         .then(user => {
             if (user) {
-
                 res.json({
                     status: true,
                     data: user,
@@ -44,22 +42,18 @@ router.get('/:id', (req, res) => {
                     msg: "user not found"
                 })
             }
-
         })
         .catch(err => {
             res.status(500).send({
                 status: false,
-                msg: "problem in fetching user"
+                msg:"problem in fetching user : "+  err.toString()//
             })
         })
 });
 
-
 // add user - admin
 router.post('/', adminGuard, (req, res) => {
-
     const {username, password} = req.body;
-
     if (username && password) {
         User
             .findOne({username})
@@ -103,19 +97,19 @@ router.put('/:id', adminGuard, (req, res) => {
     user = req.body;
     const {id} = req.params;
 
-    if (user.username && user.password) {
-        User.findByIdAndUpdate(id, user, {new: true})
+    if (id) {
+        User.findOneAndUpdate({username: id}, user, {new: false})
             .then(u => {
                 res.json({
                     status: true,
-                    data: user,
+                    data: u,
                     msg: 'Change user successful'
                 });
             })
             .catch(err => {
                 res.status(500).send({
-                    status: flase,
-                    msg: 'Change user problem'
+                    status: false,
+                    msg: err.toString() //'Change user problem'
                 });
             })
     } else {
@@ -131,7 +125,7 @@ router.delete('/:id', adminGuard, (req, res) => {
 
     const {id} = req.params;
 
-    User.findByIdAndDelete(id)
+    User.findOneAndDelete(id)
         .then(u => {
                 res.json({
                     status: true,
