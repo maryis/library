@@ -6,6 +6,8 @@ To install nodejs:
 -	Nvm install 10.15.0 (check the lt’s version in nodejs.org
 -	Nvm use version-no
 -   change port in bin/www
+- added file/line
+
 
 To install express:
 -	Npm install express-generator  -g
