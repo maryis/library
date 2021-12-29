@@ -7,6 +7,8 @@ To install nodejs:
 -	Nvm use version-no
 -   change port in bin/www
 
+
+--add new line 
 To install express:
 -	Npm install express-generator  -g
 -	Express –view=pug   myapp  (create an express app structure with pug as html template engine)
