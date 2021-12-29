@@ -9,6 +9,8 @@ To install nodejs:
 - added file/line
 
 
+
+--add new line 
 To install express:
 -	Npm install express-generator  -g
 -	Express –view=pug   myapp  (create an express app structure with pug as html template engine)
